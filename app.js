@@ -9,8 +9,8 @@ import cors from 'cors'
 import indexRoutes from './routes/index.routes.js'
 import modeloRoutes from './routes/modelo.routes.js'
 import marcaRoutes from './routes/marca.routes.js'
-import tipoVehiculo from './routes/tipoVehiculo.routes.js'
-
+import tipoVehiculoRoutes from './routes/tipoVehiculo.routes.js'
+import usuarioRoutes from './routes/usuario.routes.js'
 const app=express()
 
 /**
@@ -24,6 +24,7 @@ app.use(express.json())
 app.use(indexRoutes)
 app.use(modeloRoutes)
 app.use(marcaRoutes)
-app.use(tipoVehiculo)
+app.use(tipoVehiculoRoutes)
+app.use(usuarioRoutes)
 
 export default app
