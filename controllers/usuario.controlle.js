@@ -9,7 +9,7 @@ export const getAllUsuario = async (req, res) => {
       `
         res.status(200).json(usuario)
     } catch (error) {
-        return res.status(500).json({ message: error.message,code:-1,value:error.message})
+        return res.status(500).json({ message: error.message, code: -1, value: error.message })
     }
 }
 
@@ -25,31 +25,25 @@ export const getByIdUsuario = async (req, res) => {
     `
         res.status(200).json(usuario)
     } catch (error) {
-        return res.status(500).json({ message: error.message,code:-1,value:error.message })
+        return res.status(500).json({ message: error.message, code: -1, value: error.message })
     }
 }
 
 export const insertUsuario = async (req, res) => {
     try {
 
-        const { usu_nombre, usu_clave, usu_estado, usu_telefono, usu_direccion, usu_mail} = req.body
+        const { usu_nombre, usu_clave, usu_estado, usu_telefono, usu_direccion, usu_mail } = req.body
 
-        const comprobarUsuario=await sql`
-        select * from usuario
-        where usu_mail = ${usu_mail}
-        `
-       if(comprobarUsuario.length>0){
-        return res.status(500).json({ message: 'usuario existente con este mail',code:-1,value:'mailExistente' })
-       }else{
+
         const usuario = await sql`
         INSERT INTO usuario(
         usu_nombre, usu_clave, usu_estado, usu_telefono, usu_direccion, usu_mail)
         VALUES (${usu_nombre}, ${usu_clave}, ${usu_estado}, ${usu_telefono}, ${usu_direccion}, ${usu_mail})
         `
-        return res.status(200).json({ message: 'Usuario creado exitosamente',code:1,value:'exitoso'})
-       }
+        return res.status(200).json({ message: 'Usuario creado exitosamente', code: 1, value: 'exitoso' })
+
     } catch (error) {
-        return res.status(500).json({ message: error.message,code:-1,value:error.message })
+        return res.status(500).json({ message: error.message, code: -1, value: error.message })
     }
 }
 
@@ -64,9 +58,9 @@ export const blockByIdUsuario = async (req, res) => {
 	    SET usu_estado= false
 	    WHERE usu_id=${id}
         `
-        res.status(200).json({message:`usuario ${id} bloqueado exitosamente`,code:1,value:'exitoso'})
+        res.status(200).json({ message: `usuario ${id} bloqueado exitosamente`, code: 1, value: 'exitoso' })
     } catch (error) {
-        return res.status(500).json({ message: error.message, code:-1,value:error.message})
+        return res.status(500).json({ message: error.message, code: -1, value: error.message })
     }
 }
 
@@ -78,23 +72,23 @@ export const unblokByIdUsuario = async (req, res) => {
 	    SET usu_estado= true
 	    WHERE usu_id=${id}
         `
-        res.status(200).json({message:`usuario ${id} desbloqueado exitosamente`,code:1,value:'exitoso'})
+        res.status(200).json({ message: `usuario ${id} desbloqueado exitosamente`, code: 1, value: 'exitoso' })
     } catch (error) {
-        return res.status(500).json({ message: error.message,code:-1,value:error.message })
+        return res.status(500).json({ message: error.message, code: -1, value: error.message })
     }
 }
 
 export const updateUsuario = async (req, res) => {
     try {
-        const { usu_id,usu_nombre, usu_clave, usu_estado, usu_telefono, usu_direccion, usu_mail} = req.body
+        const { usu_id, usu_nombre, usu_clave, usu_estado, usu_telefono, usu_direccion, usu_mail } = req.body
         const usuario = await sql`
         UPDATE usuario
 	    SET  usu_nombre=${usu_nombre}, usu_clave=${usu_clave}, usu_estado=${usu_estado},
          usu_telefono=${usu_telefono}, usu_direccion=${usu_direccion}, usu_mail=${usu_mail}
 	    WHERE usu_id=${usu_id}
         `
-        res.status(200).json({ message: 'Usuario actualizado correctamente',code:1,value:'exitoso'})
+        res.status(200).json({ message: 'Usuario actualizado correctamente', code: 1, value: 'exitoso' })
     } catch (error) {
-        return res.status(500).json({ message: error.message ,code:-1,value:error.message})
+        return res.status(500).json({ message: error.message, code: -1, value: error.message })
     }
 }

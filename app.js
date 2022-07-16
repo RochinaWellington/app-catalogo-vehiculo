@@ -12,6 +12,7 @@ import marcaRoutes from './routes/marca.routes.js'
 import tipoVehiculoRoutes from './routes/tipoVehiculo.routes.js'
 import usuarioRoutes from './routes/usuario.routes.js'
 import vehiculoRoutes from './routes/vehiculo.routes.js'
+import imagenRoutes from './routes/imagen.routes.js'
 const app=express()
 
 /**
@@ -28,5 +29,6 @@ app.use(marcaRoutes)
 app.use(tipoVehiculoRoutes)
 app.use(usuarioRoutes)
 app.use(vehiculoRoutes)
+app.use(imagenRoutes)
 
 export default app
