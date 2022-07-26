@@ -7,5 +7,4 @@ export const checkDuplicateEmail= async(req,res,next)=>{
         `
     if(comprobarUsuario.length>0) return res.status(400).json({ message: 'Usuario existente con este mail',code:-1,value:'mailExistente' })
     next()
-      
 }
