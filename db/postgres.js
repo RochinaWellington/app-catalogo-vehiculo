@@ -4,5 +4,9 @@ const dotEnv=dotenv.config()
 
 
 const ruta=process.env.DATABASE_URL
-const sql = postgres(ruta)
+const sql = postgres(ruta,{
+    ssl: {
+        rejectUnauthorized: false
+      }
+})
 export default sql
