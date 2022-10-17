@@ -4,8 +4,12 @@ import sql from '../db/postgres.js'
 export const getAllVehiculo = async (req, res) => {
     try {
         const vehiculo = await sql`
-        select * from vehiculo
-        where veh_estadoeliminado=false
+        select vh.*,
+				mc.mac_nombre
+		from vehiculo as vh
+		inner join marca as mc
+		on mc.mac_id=vh.mac_id
+		where veh_estadoeliminado=false
       `
         res.status(200).json(vehiculo)
     } catch (error) {
