@@ -2,7 +2,7 @@ import {Router} from 'express'
 
 const router =Router()
 
-router.get('/',(req,res)=>res.send('Hello world Rochina'))
+router.get('/',(req,res)=>res.send('Connection established successfully.'))
 
 
 export default router
